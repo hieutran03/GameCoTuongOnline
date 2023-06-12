@@ -19,10 +19,14 @@ namespace CoTuongLAN
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CoTuongLAN.Menu());
-            if (CoTuongLAN.Menu.close == true)
+            if (CoTuongLAN.Menu.isClosed == true && CoTuongLAN.Menu.isServer == true)
+            {
+                Application.Run(new CoTuongLAN.Option());
+
+            }
+            if (CoTuongLAN.Option.isClosed == true || (CoTuongLAN.Menu.isClosed == true && CoTuongLAN.Menu.isServer == false))
             {
                 Application.Run(new CoTuongLAN.CuongTuongLAN());
-
             }
         }
     }

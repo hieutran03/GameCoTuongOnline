@@ -12,6 +12,7 @@ namespace CoTuongLAN.LAN
     {
         public int Command { get; set; }
         public string Message { get; set; }
+        public int TimeSet { get; set; }
         public Point DepartureLocation { get; set; }
         public Point DestinationLocation { get; set; }
 
@@ -26,6 +27,12 @@ namespace CoTuongLAN.LAN
         {
             this.Command = command;
             this.Message = message;
+        }
+        public SocketData(int command, string message, int time)
+        {
+            this.Command = command;
+            this.Message = message;
+            this.TimeSet = time;
         }
         public SocketData(int command, string message, Point departureLocation, Point destinationLocation)
         {

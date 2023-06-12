@@ -247,7 +247,7 @@
             this.lblScore.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblScore.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblScore.ForeColor = System.Drawing.Color.Black;
-            this.lblScore.Location = new System.Drawing.Point(679, 625);
+            this.lblScore.Location = new System.Drawing.Point(714, 638);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(25, 30);
             this.lblScore.TabIndex = 15;
@@ -286,7 +286,7 @@
             this.lblOpponentScore.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblOpponentScore.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblOpponentScore.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblOpponentScore.Location = new System.Drawing.Point(703, 32);
+            this.lblOpponentScore.Location = new System.Drawing.Point(718, 32);
             this.lblOpponentScore.Name = "lblOpponentScore";
             this.lblOpponentScore.Size = new System.Drawing.Size(21, 31);
             this.lblOpponentScore.TabIndex = 16;

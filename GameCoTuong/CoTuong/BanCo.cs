@@ -91,8 +91,8 @@ namespace CoTuongLAN.CoTuong
             Location = ThongSo.ToaDoNULL
         };
         #endregion
-
-        public static int RemainingTime { get; set; } = 900; // 15 minutes
+        public static int OptionTime { get; set; } = 0; 
+        public static int RemainingTime { get; set; } = OptionTime; // 15 minutes
 
         #endregion
 
@@ -476,7 +476,7 @@ namespace CoTuongLAN.CoTuong
             BtnUndo.Enabled = false;
             BtnSurrender.Enabled = false;
 
-            RemainingTime = 900;
+            RemainingTime = OptionTime;
             LblRemainingTime.Text = SecondsToTime(RemainingTime);
             LblOpponentRemainingTime.Text = LblRemainingTime.Text;
             if (PheTa == 2)

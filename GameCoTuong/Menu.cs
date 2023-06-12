@@ -13,7 +13,8 @@ namespace CoTuongLAN
 {
     public partial class Menu : Form
     {
-        public static bool close = false;
+        public static bool isClosed = false;
+        public static bool isServer = false;
         public Menu()
         {
             InitializeComponent();
@@ -26,7 +27,8 @@ namespace CoTuongLAN
             else
                 CoTuongLAN.CoTuong.BanCo.Name = tbPlayerName.Text;
             this.Close();
-            close = true;
+            isClosed = true;
+            isServer = true;
         }
 
         private void btnJoin_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace CoTuongLAN
             else
                 CoTuongLAN.CoTuong.BanCo.Name = tbPlayerName.Text;
             this.Close();
-            close = true;
+            isClosed = true;
         }
     }
 }
