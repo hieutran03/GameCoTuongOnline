@@ -178,7 +178,6 @@ namespace CoTuongLAN
                     socketManager.isServer = false;
                     socketManager.Send(new SocketData((int)SocketCommand.TEST_CONNECTION));
                     Listen();
-                    startGame();
                 }
                 
             }
@@ -344,6 +343,7 @@ namespace CoTuongLAN
                         {
                             panel1.Enabled = true;
                             socketManager.Send(new SocketData((int)SocketCommand.ACCEPT_READY, BanCo.Name));
+
                             BanCo.OptionTime = data.TimeSet;
                             BanCo.SetToDefault();
                             BanCo.XoaBanCo();
