@@ -517,6 +517,18 @@ namespace CoTuongLAN.CoTuong
         {
             QuanCoDuocChon.Quan_Co.DanhSachDiemDich.Clear();
             QuanCoDuocChon.Quan_Co.TinhNuocDi();
+
+            if(QuanCoDuocChon.Quan_Co.GetID() == 0 && HaiTuongDoiMatNhau())
+            {
+                if(QuanCoDuocChon.Quan_Co.Mau == 1)// tướng xanh
+                {
+                    QuanCoDuocChon.Quan_Co.DanhSachDiemDich.Add(TuongDo.ToaDo);
+                }
+                else // tướng đỏ
+                {
+                    QuanCoDuocChon.Quan_Co.DanhSachDiemDich.Add(TuongXanh.ToaDo);
+                }
+            }
             foreach (Point element in QuanCoDuocChon.Quan_Co.DanhSachDiemDich)
             {
                 QuanCo target = Alive_QuanCo.Find(element1 => element1.Mau != QuanCoDuocChon.Quan_Co.Mau && element1.ToaDo == element);
