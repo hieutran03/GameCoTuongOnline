@@ -10,10 +10,13 @@ namespace CoTuongLAN.CoTuong
 {
     public class QuanSi : QuanCo
     {
-        public QuanSi() { }
+        public QuanSi() {
+            SetID(5);
+        }
 
         public QuanSi(Point toaDoBanDau)
         {
+            SetID(5);
             ToaDo = toaDoBanDau;
             DanhSachDiemDich = new List<Point>();
             if (BanCo.PheTa == 2)

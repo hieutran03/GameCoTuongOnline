@@ -51,6 +51,7 @@ namespace CoTuongLAN.LAN
             ASK_UNDO,
             ACCEPT_UNDO,
             SURRENDER,
+            IS_LOSED,
             EXIT,
             CHAT_MESSAGE,
             TEST_CONNECTION,

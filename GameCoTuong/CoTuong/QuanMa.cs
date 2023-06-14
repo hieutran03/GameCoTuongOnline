@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,10 +11,13 @@ namespace CoTuongLAN.CoTuong
 {
     public class QuanMa : QuanCo
     {
-        public QuanMa() { }
+        public QuanMa() {
+            SetID(3);
+        }
 
         public QuanMa(Point toaDoBanDau)
         {
+            SetID(3);
             ToaDo = toaDoBanDau;
             DanhSachDiemDich = new List<Point>();
             if (BanCo.PheTa == 2)
@@ -23,6 +27,7 @@ namespace CoTuongLAN.CoTuong
             BanCo.Alive_QuanCo.Add(this);
         }
         
+
         public override void TinhNuocDi()
         {
             Point diemCan;

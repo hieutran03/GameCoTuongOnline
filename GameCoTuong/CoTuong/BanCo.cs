@@ -704,11 +704,20 @@ namespace CoTuongLAN.CoTuong
             DoiPheUndo();
             HienThiNuocDiTruoc();
         }
+        public static bool DaAnQuanTuong(Point destination)
+        {
+            if (!CoQuanCoTaiDay(destination)) return false;
+            RoundPictureBox quanCoBiAn = Alive_RoundPictureBox.Find(element => element.Quan_Co.ToaDo == destination);
+            if(quanCoBiAn.Quan_Co.GetID() == 0)
+                return true;
+            return false;
+        }
 
         public static bool TaDanh(Point departure, Point destination)
         {
             LoaiBoQuanCo(destination, PtbBanCo); // Loại bỏ quân cờ ở điểm đích
             QuanCoDuocChon.DiChuyen(destination); // Di chuyển quân cờ đến điểm đích
+            /*
             if (HaiTuongDoiMatNhau()) // nước đi không hợp lệ nếu sau nước đi 2 tướng đối mặt nhau => hoàn tác nước đi
             {
                 MessageBox.Show("Tướng phe bạn sẽ đối mặt với tướng đối phương sau nước đi này. Hãy chọn một nước đi khác.", "Nước đi không hợp lệ");
@@ -729,24 +738,30 @@ namespace CoTuongLAN.CoTuong
                 RefreshBanCo();
                 return false;
             }
+            */
             LuuNuocDi(departure, destination);
             HienThiNuocDi(departure, destination, PtbBanCo);
             DoiPhe();
             return true;
         }
 
-        public static void DoiPhuongDanh(Point departure, Point destination)
+        public static bool DoiPhuongDanh(Point departure, Point destination)
         {
+            bool checkAnQuanTuong = DaAnQuanTuong(destination);
             QuanCoDuocChon = Alive_RoundPictureBox.Find(element => element.Quan_Co.ToaDo == departure);
             LoaiBoQuanCo(destination, PtbBanCo);
             QuanCoDuocChon.DiChuyen(destination);
             LuuNuocDi(departure, destination);
             HienThiNuocDi(departure, destination, PtbBanCo);
             DoiPhe();
+            /*
             if (CoChieuTuong(PheDoiPhuong(PheTa))) // nếu sau nước đi phe di chuyển chiếu tướng phe đối phương => thông báo cho người chơi
             {
                 MessageBox.Show("Bạn bị chiếu tướng!");
             }
+            */
+            
+            return checkAnQuanTuong;
         }
 
         public static void DisableBanCo()

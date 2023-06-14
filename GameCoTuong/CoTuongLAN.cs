@@ -199,7 +199,19 @@ namespace CoTuongLAN
             };
             listenThread.Start();
         }
+        void ThuaCuoc()
+        {
+            btnSurrender.Enabled = false;
+            socketManager.Send(new SocketData((int)SocketCommand.SURRENDER));
+            lblOpponentScore.Text = (int.Parse(lblOpponentScore.Text) + 1).ToString();
+            btnUndo.Enabled = false;
+            btnNewGame.Enabled = false;
+            if (BanCo.PheTa == 2)
+                btnStart.Enabled = true;
+            timerRemainingTime.Stop();
 
+            MessageBox.Show("Bạn đã thua ván cờ này. Bắt đầu ván mới.", "Kết thúc ván cờ", MessageBoxButtons.OK);
+        }
         private void ProcessSocketData(SocketData data)
         {
             switch (data.Command)
@@ -208,7 +220,13 @@ namespace CoTuongLAN
                     this.Invoke((MethodInvoker)(() =>
                     {
                         timerRemainingTime.Start();
-                        BanCo.DoiPhuongDanh(data.DepartureLocation, data.DestinationLocation);
+                        bool DaThua = BanCo.DoiPhuongDanh(data.DepartureLocation, data.DestinationLocation);
+                        
+                        if (DaThua)
+                        {
+                            ThuaCuoc();
+                        }
+                        
                     }));
                     break;
                 case (int)SocketCommand.NOTIFY:
@@ -303,7 +321,7 @@ namespace CoTuongLAN
                         btnNewGame.Enabled = false;
                         timerRemainingTime.Stop();
                         lblScore.Text = (int.Parse(lblScore.Text) + 1).ToString();
-                        MessageBox.Show("Đối phương đã xin hàng. Bạn đã thắng ván cờ này! Bắt đầu ván mới.", "Kết thúc ván cờ", MessageBoxButtons.OK);
+                        MessageBox.Show("Chúc mừng bạn đã thắng ván cờ này! Bắt đầu ván mới.", "Kết thúc ván cờ", MessageBoxButtons.OK);
                         this.Enabled = true;
                     }));
                     break;

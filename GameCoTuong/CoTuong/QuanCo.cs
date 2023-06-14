@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,7 +12,11 @@ namespace CoTuongLAN.CoTuong
     public class QuanCo
     {
         #region properties
-
+        public int ID { get; protected set; }
+        /*
+         * ID của các quân cờ, dùng để nhận diện các quân cờ
+         * 0: Tướng, 1: Xe, 2: Pháo, 3: Mã, 4: Tịnh, 5: Sĩ, 6: Tốt
+        */
         public Point ToaDo { get; protected set; }
 
         public int Mau { get; protected set; } // xanh 1, đỏ 2;
@@ -23,7 +28,7 @@ namespace CoTuongLAN.CoTuong
         #region methods
 
         public QuanCo() { }
-
+            
         public QuanCo(int X, int Y)
         {
             ToaDo = new Point(X, Y);
@@ -35,7 +40,14 @@ namespace CoTuongLAN.CoTuong
                 Mau = 0;
             ToaDo = toaDoBanDau;
         }
-
+        public void SetID(int ID)
+        {
+            this.ID = ID;
+        }
+        public int GetID()
+        {
+            return ID;
+        }
         public virtual void TinhNuocDi() { }
 
         public void DiChuyen(Point location)
