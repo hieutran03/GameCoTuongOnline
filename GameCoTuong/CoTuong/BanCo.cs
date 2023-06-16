@@ -766,12 +766,6 @@ namespace CoTuongLAN.CoTuong
             LuuNuocDi(departure, destination);
             HienThiNuocDi(departure, destination, PtbBanCo);
             DoiPhe();
-            /*
-            if (CoChieuTuong(PheDoiPhuong(PheTa))) // nếu sau nước đi phe di chuyển chiếu tướng phe đối phương => thông báo cho người chơi
-            {
-                MessageBox.Show("Bạn bị chiếu tướng!");
-            }
-            */
             
             return checkAnQuanTuong;
         }
@@ -800,6 +794,28 @@ namespace CoTuongLAN.CoTuong
                 result += ss;
             return result;
         }
+        public static int TimeToSeconds(string time)
+        {
+            string[] parts = time.Split(':');
+            if (parts.Length != 2)
+            {
+                throw new ArgumentException("Invalid time format. Expected 'mm:ss'.");
+            }
+
+            int minutes, seconds;
+            if (!int.TryParse(parts[0], out minutes) || !int.TryParse(parts[1], out seconds))
+            {
+                throw new ArgumentException("Invalid time format. Expected 'mm:ss'.");
+            }
+
+            if (minutes < 0 || seconds < 0 || seconds >= 60)
+            {
+                throw new ArgumentException("Invalid time values.");
+            }
+
+            return minutes * 60 + seconds;
+        }
+
         #endregion
     }
 }

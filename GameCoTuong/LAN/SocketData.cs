@@ -45,13 +45,13 @@ namespace CoTuongLAN.LAN
         public enum SocketCommand
         {
             SEND_MOVE,
+            IS_LAGGED,
             NOTIFY,
             ASK_NEW_GAME,
             ACCEPT_NEW_GAME,
             ASK_UNDO,
             ACCEPT_UNDO,
             SURRENDER,
-            IS_LOSED,
             EXIT,
             CHAT_MESSAGE,
             TEST_CONNECTION,

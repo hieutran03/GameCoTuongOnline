@@ -103,12 +103,39 @@ namespace CoTuongLAN
             if (BanCo.TaDanh(BanCo.QuanCoDuocChon.Quan_Co.ToaDo, ThongSo.ToaDoDonViCuaDiem(((RoundButton)sender).Location)))
             {
                 timerRemainingTime.Stop();
-                socketManager.Send(new SocketData((int)SocketCommand.SEND_MOVE, string.Empty,
-                    new Point(8 - BanCo.ToaDoDiTruoc.X, 9 - BanCo.ToaDoDiTruoc.Y), new Point(8 - BanCo.ToaDoDenTruoc.X, 9 - BanCo.ToaDoDenTruoc.Y)));
+                SendMove();
+                WaitMove();
             }
             Listen();
         }
-
+        private void SendMove()
+        {
+            socketManager.Send(new SocketData((int)SocketCommand.SEND_MOVE, string.Empty,
+                    new Point(8 - BanCo.ToaDoDiTruoc.X, 9 - BanCo.ToaDoDiTruoc.Y), new Point(8 - BanCo.ToaDoDenTruoc.X, 9 - BanCo.ToaDoDenTruoc.Y)));
+        }
+        private void WaitMove()
+        {
+            Thread waitThread = new Thread(() => // xem đối thủ có bị lag không
+            {
+                while (true)
+                {
+                    int startTime = BanCo.TimeToSeconds(lblOpponentRemainingTime.Text);
+                    Thread.Sleep(2222);
+                    int endTime = BanCo.TimeToSeconds(lblOpponentRemainingTime.Text);
+                    if (endTime == startTime)
+                    {
+                        //socketManager.Send(new SocketData((int)SocketCommand.IS_LAGGED));
+                        SendMove();
+                    }
+                    else break;
+                }
+            });
+            waitThread.IsBackground = true;
+            waitThread.Start();
+            
+            
+            
+        }
         // Event cho button 'New game'
         private void btnNewGame_Click(object sender, EventArgs e) // BẢN OFFLINE
         {
@@ -227,6 +254,12 @@ namespace CoTuongLAN
                             ThuaCuoc();
                         }
                         
+                    }));
+                    break;
+                case (int)SocketCommand.IS_LAGGED:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        SendMove();   
                     }));
                     break;
                 case (int)SocketCommand.NOTIFY:

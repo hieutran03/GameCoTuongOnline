@@ -11,12 +11,12 @@ namespace CoTuongLAN.CoTuong
     public class QuanXe : QuanCo
     {
         public QuanXe() {
-            SetID(0);
+            SetID(1);
         }
 
         public QuanXe(Point toaDoBanDau)
         {
-            SetID(0);
+            SetID(1);
             ToaDo = toaDoBanDau;
             DanhSachDiemDich = new List<Point>();
             if (BanCo.PheTa == 2)
