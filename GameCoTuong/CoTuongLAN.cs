@@ -83,7 +83,7 @@ namespace CoTuongLAN
         }
 
         /* Những gì xảy ra khi click vào một RoundButton điểm bàn cờ để đi đến */
-        private void DiemBanCo_Click(object sender, EventArgs e) // BẢN OFFLINE
+        private void DiemBanCo_Click(object sender, EventArgs e) 
         {
             if (BanCo.QuanCoDuocChon == null) return; // Dòng code chống lỗi lặp lại event ngoài ý muốn (chưa rõ nguyên nhân của lỗi này). Không được xóa!
             BanCo.Dehighlight(); // chọn nước đi...
@@ -132,9 +132,6 @@ namespace CoTuongLAN
             });
             waitThread.IsBackground = true;
             waitThread.Start();
-            
-            
-            
         }
         // Event cho button 'New game'
         private void btnNewGame_Click(object sender, EventArgs e) // BẢN OFFLINE
